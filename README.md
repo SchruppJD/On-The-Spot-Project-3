@@ -5,9 +5,9 @@
 | Version Control Master | Scrum Master    |
 | ---------------------- | --------------- |
 | Name                   | Name            |
-| RIT username           | RIT username    |
-| Discord name           | Discord name    |
-| Github username        | GitHub username |
+| JDS5583                | RIT username    |
+| Schames.               | Discord name    |
+| SchruppJD.             | GitHub username |
 
 #### Keywords
 
