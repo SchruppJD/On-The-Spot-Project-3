@@ -22,7 +22,7 @@
 
 -   Windows
 
-#### Target Player Exerience
+#### Target Player Experience
 
 #### Core Diagram
 
