@@ -4,21 +4,19 @@
 
 | Version Control Master | Scrum Master    |
 | ---------------------- | --------------- |
-| Ian Matic              | Name            |
-| imm2853                | RIT username    |
-| ianmatic               | Discord name    |
-| ianmatic               | GitHub username |
+| Name                   | Name            |
+| RIT username           | RIT username    |
+| Discord name           | Discord name    |
+| Github username        | GitHub username |
 
 #### Keywords
 
--   Horror
--   Dark
--   Quiet
--   Mysterious
--   Unsettling
--   Crammed
--   Relentless
--   Intense
+-   Party
+-   Cartoony
+-   Competitive
+-   Snowy
+-   Winter
+-   Arcade
 
 #### Platforms(s)
 
