@@ -26,9 +26,9 @@
 
 #### Core Diagram
 
-1.  Core Mechaninc
+1.  Core Mechanic
 
-2.  Secondary Mechancis
+2.  Secondary Mechancics
 
 3.  Progression
 
