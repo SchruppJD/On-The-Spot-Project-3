@@ -43,7 +43,10 @@
 - The player with the highest score wins.
 
 4.  Narrative
+- After years of punishing bad children, Krampus has designed a new way to punish children who end up on the naughty list.After being caught, dodge traps, avoid obstacles and try not to get tripped up by your fellow evil cohorts while navigating course from hell, showing Krampus who really deserves to be on the naughty list. Whoever wins gets their freedom and the chance to punish other naughty children as Krampus' little elf!
 #### Minimal Viable Interaction
 #### References
 Gameplay/Layout Reference - The traps and ghost mechanic are similar to the one found in Crawl. Also, the small-room top-down design aspect is also similar to Crawl.
 ![alt text](https://edge.alluremedia.com.au/m/k/2014/05/crawl3.jpg "Crawl")
+Theming Reference - The game will be Winter/Christmas themed in nature.
+![Scary Krampus holding wee bebe](https://www.wweek.com/resizer/kt8_j8nSzFzNIrPWKqwh_CDBw9E=/1200x0/filters:quality(100)/s3.amazonaws.com/arc-wordpress-client-uploads/wweek/wp-content/uploads/2018/11/29160904/26172944_1791082507569786_6080951049921406738_o-e1543537037658.jpg)
