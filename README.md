@@ -1,4 +1,4 @@
-# Whacky Wintery Mania
+# Whacky Winter Mania
 
 ### On The Spot
 
