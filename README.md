@@ -1,4 +1,4 @@
-# Whacky Winter Mania
+# Untitled
 
 ### On The Spot
 
@@ -45,6 +45,8 @@
 4.  Narrative
 - After years of punishing bad children, Krampus has designed a new way to punish children who end up on the naughty list. After being caught, dodge traps, avoid obstacles and try not to get tripped up by your fellow evil cohorts while navigating course from hell, showing Krampus who really deserves to be on the naughty list. Whoever wins gets their freedom and the chance to punish other naughty children as Krampus' little elf!
 #### Minimal Viable Interaction
+For the MVI, we are going to need the basic gameloop and mechanics. This will include multiplayer, traps, the ablility for players to push eachother, and a way to win. A basic room will be needed for the players to move in and for the trap to reside in. The win condition at this point will mostly likely be whoever gets to the end first, later iterations will have multiple rooms/stages where players can earn points allowing the player with most points to be the winner. There will be only one kind of trap for the MVI with plans to add more variations as we progress.
+
 #### References
 Gameplay/Layout Reference - The traps and ghost mechanic are similar to the one found in Crawl. Also, the small-room top-down design aspect is also similar to Crawl.
 ![alt text](https://edge.alluremedia.com.au/m/k/2014/05/crawl3.jpg "Crawl")
