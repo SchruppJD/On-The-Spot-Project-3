@@ -50,3 +50,5 @@ Gameplay/Layout Reference - The traps and ghost mechanic are similar to the one 
 ![alt text](https://edge.alluremedia.com.au/m/k/2014/05/crawl3.jpg "Crawl")
 Theming Reference - The game will be Winter/Christmas themed in nature.
 ![Scary Krampus holding wee bebe](https://www.wweek.com/resizer/kt8_j8nSzFzNIrPWKqwh_CDBw9E=/1200x0/filters:quality(100)/s3.amazonaws.com/arc-wordpress-client-uploads/wweek/wp-content/uploads/2018/11/29160904/26172944_1791082507569786_6080951049921406738_o-e1543537037658.jpg)
+![Isometric Runner](https://res.cloudinary.com/dylgjm9z8/image/upload/c_scale,w_949/v1430454005/PH_DP_WaterfallStream_avawhs.jpg)
+Gameplay Reference - Isometric View as players avoid obstacles along the way. (With possible timer/points counter)
