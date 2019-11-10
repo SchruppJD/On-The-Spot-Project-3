@@ -5,9 +5,9 @@
 | Version Control Master | Scrum Master    |
 | ---------------------- | --------------- |
 | Name                   | Name            |
-| JDS5583                | RIT username    |
-| Schames.               | Discord name    |
-| SchruppJD.             | GitHub username |
+| JDS5583                | amf7619         |
+| Schames.               | Ferryboi#5260   |
+| SchruppJD.             | amf7619         |
 
 #### Keywords
 
