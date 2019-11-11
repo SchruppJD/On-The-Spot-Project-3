@@ -5,9 +5,9 @@
 | Version Control Master | Scrum Master    |
 | ---------------------- | --------------- |
 | Name                   | Name            |
-| JDS5583                | RIT username    |
-| Schames.               | Discord name    |
-| SchruppJD.             | GitHub username |
+| JDS5583                | amf7619         |
+| Schames.               | Ferryboi#5260   |
+| SchruppJD.             | amf7619         |
 
 #### Keywords
 
@@ -23,6 +23,7 @@
 -   Windows
 
 #### Target Player Experience
+This game will promote goofy fast paced competition and absolute tomfoolery. The action begins right away, throwing players into a room full of traps where they can feel free to mess with each other. The bright colors and the fun, "bouncy" music will give off a playful vibe, while the fast movement and pushing mechanic being the player's only options showing that it can be a lot of fun to push your friend somewhere deadly. Traps should make players afraid to progress forward, but the timer and the first place bonus will make the players take risks, enhancing the feeling of excitement that comes after the slight fears of doing something dangerous. Overall this game will aim to produce smiles and friendly rivalries for all players who choose to enter.
 
 #### Core Diagram
 
