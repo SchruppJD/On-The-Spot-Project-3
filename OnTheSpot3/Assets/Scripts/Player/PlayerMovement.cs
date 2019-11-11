@@ -9,8 +9,6 @@ public class PlayerMovement : MonoBehaviour
 
     private Rigidbody myRigidBody;
 
-    private bool isAlive;
-
     public enum movementDirection
     {
         Forward, Backward, Left, Right
@@ -20,21 +18,18 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         myRigidBody = GetComponent<Rigidbody>();
-        isAlive = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(direction != new Vector3(0.0f, 0.0f, 0.0f))
-            MoveCharacter();
-        if(isAlive)
-            KeepUpright();
+        MoveCharacter();
     }
 
     void MoveCharacter()
     {
         myRigidBody.AddForce(direction * movementSpeed);
+        direction = Vector3.zero;
     }
 
     public void MoveDirection(movementDirection e)
@@ -42,21 +37,25 @@ public class PlayerMovement : MonoBehaviour
         switch(e)
         {
             case movementDirection.Forward:
-                direction = new Vector3(0.0f, 0.0f, 1.0f);
+                direction += new Vector3(0.0f, 0.0f, 1.0f);
                 break;
             case movementDirection.Backward:
-                direction = new Vector3(0.0f, 0.0f, -1.0f);
+                direction += new Vector3(0.0f, 0.0f, -1.0f);
                 break;
             case movementDirection.Left:
-                direction = new Vector3(-1.0f, 0.0f, 0.0f);
+                direction += new Vector3(-1.0f, 0.0f, 0.0f);
                 break;
             case movementDirection.Right:
-                direction = new Vector3(1.0f, 0.0f, 1.0f);
+                direction += new Vector3(1.0f, 0.0f, 1.0f);
                 break;
             default:
-                direction = new Vector3(0.0f, 0.0f);
                 break;
         }
+    }
+
+    public void Jump()
+    {
+        direction += new Vector3(0.0f, 50.0f, 0.0f);
     }
 
     void KeepUpright()
