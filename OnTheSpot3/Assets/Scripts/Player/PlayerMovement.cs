@@ -9,6 +9,8 @@ public class PlayerMovement : MonoBehaviour
 
     private Rigidbody myRigidBody;
 
+    private bool isAlive;
+
     public enum movementDirection
     {
         Forward, Backward, Left, Right
@@ -18,6 +20,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         myRigidBody = GetComponent<Rigidbody>();
+        isAlive = true;
     }
 
     // Update is called once per frame
@@ -25,7 +28,8 @@ public class PlayerMovement : MonoBehaviour
     {
         if(direction != new Vector3(0.0f, 0.0f, 0.0f))
             MoveCharacter();
-        KeepUpright();
+        if(isAlive)
+            KeepUpright();
     }
 
     void MoveCharacter()
