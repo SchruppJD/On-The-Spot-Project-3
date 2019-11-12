@@ -1,4 +1,4 @@
-# Naughty List
+# Naughty List: Battle Royale
 
 ### On The Spot
 
