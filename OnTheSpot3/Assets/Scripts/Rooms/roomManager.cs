@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 
 public class roomManager : MonoBehaviour
 {
@@ -62,6 +64,12 @@ public class roomManager : MonoBehaviour
         {
             print("R key was pressed");
             nextConnector.GetComponent<roomConnector>().Reset();
+        }
+
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            print("T key was pressed");
+            SceneManager.LoadScene(0);
         }
     }
 
