@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
   m_LightingDataAsset: {fileID: 0}
   m_UseShadowmask: 1
---- !u!196 &4
+
 NavMeshSettings:
   serializedVersion: 2
   m_ObjectHideFlags: 0
@@ -120,11 +120,7 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
-<<<<<<< Updated upstream
-=======
-<<<<<<< HEAD
->>>>>>> Stashed changes
---- !u!1 &169268458
+
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -476,10 +472,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 694272351}
   m_CullTransparentMesh: 0
-<<<<<<< Updated upstream
-=======
-=======
---- !u!1001 &388370525
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -556,9 +548,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e9eb1ca7f2420fd48b0aeaec9a22c139, type: 3}
->>>>>>> f63e5669c5411ff73e0a0fa6adf2ec132fea5235
->>>>>>> Stashed changes
---- !u!1 &705507993
+
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
