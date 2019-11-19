@@ -106,7 +106,7 @@ GameObject:
   - component: {fileID: 1439337946}
   m_Layer: 0
   m_Name: SawBlade
-  m_TagString: Untagged
+  m_TagString: Trap
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -156,8 +156,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   leftBlade: {fileID: 7975754259718043582}
   rightBlade: {fileID: 7975754259785904948}
-  leftHitBox: {fileID: 0}
-  rightHitBox: {fileID: 0}
 --- !u!95 &1439337946
 Animator:
   serializedVersion: 3
