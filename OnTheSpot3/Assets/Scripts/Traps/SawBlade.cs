@@ -14,7 +14,7 @@ public class SawBlade : Trap
     private new void Start()
     {
         base.Start();
-        player = GameObject.FindGameObjectWithTag("Player");
+        players = GameObject.FindGameObjectsWithTag("Player");
         currentState = TrapState.Active;
         triggerChance = .5f;
         detectionArea = GetComponent<BoxCollider>();
@@ -24,17 +24,20 @@ public class SawBlade : Trap
 
     protected override bool Activate()
     {
-        if (detectionArea.bounds.Intersects(player.GetComponent<Collider>().bounds))
+        for(int i = 0; i < players.Length; i++)
         {
-            if (Random.Range(0, 1f) > triggerChance)
+            if (detectionArea.bounds.Intersects(players[i].GetComponent<Collider>().bounds))
             {
-                animator.SetBool("Trigger", true);
-                return true;
-            }
-            else
-            {
-                currentState = TrapState.Reactivate;
-                return false;
+                if (Random.Range(0, 1f) > triggerChance)
+                {
+                    animator.SetBool("Trigger", true);
+                    return true;
+                }
+                else
+                {
+                    currentState = TrapState.Reactivate;
+                    return false;
+                }
             }
         }
         return false;
