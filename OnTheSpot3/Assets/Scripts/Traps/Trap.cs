@@ -14,13 +14,13 @@ public abstract class Trap : MonoBehaviour
 
     protected float triggerChance;
     protected TrapState currentState;
-    protected GameObject[] players;
+    //protected GameObject[] players;
     protected float reactivateTime;
     float currentTime = 0;
 
     protected void Start()
     {
-        players = GameObject.FindGameObjectsWithTag("Player");
+        //players = GameObject.FindGameObjectsWithTag("Player");
         currentState = TrapState.Active;
     }
 

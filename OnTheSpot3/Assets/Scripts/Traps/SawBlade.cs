@@ -14,7 +14,7 @@ public class SawBlade : Trap
     private new void Start()
     {
         base.Start();
-        players = GameObject.FindGameObjectsWithTag("Player");
+        //players = GameObject.FindGameObjectsWithTag("Player");
         currentState = TrapState.Active;
         triggerChance = .5f;
         detectionArea = GetComponent<BoxCollider>();
@@ -24,6 +24,7 @@ public class SawBlade : Trap
 
     protected override bool Activate()
     {
+        GameObject[] players = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>().players;
         for(int i = 0; i < players.Length; i++)
         {
             if (detectionArea.bounds.Intersects(players[i].GetComponent<Collider>().bounds))
@@ -50,6 +51,18 @@ public class SawBlade : Trap
 
     protected override bool Trigger()
     {
+        GameObject[] players = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>().players;
+        for(int i = 0; i < players.Length; i++)
+        {
+            if(players[i].GetComponent<Collider>().bounds.Intersects(leftBlade.GetComponent<Collider>().bounds))
+            {
+                players[i].GetComponent<PlayerMovement>().Kill();
+            }
+            else if (players[i].GetComponent<Collider>().bounds.Intersects(rightBlade.GetComponent<Collider>().bounds))
+            {
+                players[i].GetComponent<PlayerMovement>().Kill();
+            }
+        }
         return false;
     }
 }
