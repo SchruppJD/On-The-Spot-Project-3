@@ -29,10 +29,11 @@ public class roomManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        players = GameObject.FindGameObjectsWithTag("Player");
         playerPoints = new int[players.Length];
         for (int i = 0; i < players.Length; i++)
         {
-            players[i] = Instantiate(players[i], new Vector3(0, 1, i), Quaternion.identity);
+            //players[i] = Instantiate(players[i], new Vector3(0, 1, i), Quaternion.identity);
             playerPoints[i] = 0;
         }
             
@@ -52,7 +53,6 @@ public class roomManager : MonoBehaviour
 
         updateCamera();
 
-        
     }
 
     // Update is called once per frame
@@ -98,8 +98,11 @@ public class roomManager : MonoBehaviour
             //Debug.Log(players[i].transform.position.y);
             //if(players[i].transform.position.y < 0)
             //{
-                players[i].GetComponent<Rigidbody>().velocity = Vector3.zero;
-                players[i].transform.position = new Vector3(activeConnector.transform.position.x, 1.5f, (activeConnector.transform.position.z - 5) + (3*i)  );
+           players[i].GetComponent<Rigidbody>().velocity = Vector3.zero;
+           players[i].transform.position = new Vector3(activeConnector.transform.position.x, 1.5f, (activeConnector.transform.position.z - 5) + (3*i)  );
+           players[i].GetComponent<PlayerMovement>().isDead = false;
+           players[i].transform.rotation = Quaternion.Euler(0, 90, 0);
+           players[i].GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
             //}
         }
     }
@@ -134,4 +137,20 @@ public class roomManager : MonoBehaviour
         }
     }
 
+    void deathCheck()
+    {
+        int deathCount = 0;
+        for(int i = 0; i < players.Length; i++)
+        {
+            if(players[i].GetComponent<PlayerMovement>().isDead)
+            {
+                deathCount++;
+            }
+        }
+        Debug.Log(players.Length);
+        if(deathCount == players.Length)
+        {
+            nextConnector.GetComponent<roomConnector>().Reset();
+        }
+    }
 }

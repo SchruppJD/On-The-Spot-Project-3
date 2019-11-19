@@ -58,12 +58,15 @@ public class roomConnector : MonoBehaviour
                 if (players[i].transform.position.y < 0)
                 {
                     alivePlayers--;
+                } else if(players[i].GetComponent<PlayerMovement>().isDead)
+                {
+                    alivePlayers--;
                 }
             }
 
             if (alivePlayers == 0)
             {
-                roomFinished();
+                Invoke("roomFinished",2f);
             }
 
              
@@ -91,6 +94,7 @@ public class roomConnector : MonoBehaviour
                 donePlayers.Add(other.gameObject);
                 if(donePlayers.Count == 1)
                 {
+                    GameController.playerFinished(other.gameObject);
                     leftEdge.GetComponent<Renderer>().material.SetColor("_Color", Color.yellow);
                 }
             }
@@ -103,6 +107,10 @@ public class roomConnector : MonoBehaviour
             }
 
             checkAlivePlayers();
+        }
+
+        if(!active){
+            playersInZone.Add(other.gameObject);
         }
     }
 
@@ -127,8 +135,11 @@ public class roomConnector : MonoBehaviour
         }
 
         GameController.changeRoom();
-
-        
+        playersInZone.Clear();
+        //for (int i = 0; i < players.Length; i++)
+		//	{
+        //        playersInZone.Add(players[i]);   
+		//	}
     }
 
     void openRight()
