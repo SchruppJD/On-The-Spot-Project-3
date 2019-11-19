@@ -28,34 +28,40 @@ public class PlayerMovement : MonoBehaviour
 
     void MoveCharacter()
     {
-        myRigidBody.AddForce(direction * movementSpeed);
+        myRigidBody.MovePosition(transform.position + direction * movementSpeed * Time.deltaTime);
         direction = Vector3.zero;
     }
 
     public void MoveDirection(movementDirection e)
     {
+        Quaternion targetRotation = transform.rotation;
         switch(e)
         {
             case movementDirection.Forward:
                 direction += new Vector3(0.0f, 0.0f, 1.0f);
+                targetRotation = Quaternion.Euler(0, 0, 0);
                 break;
             case movementDirection.Backward:
                 direction += new Vector3(0.0f, 0.0f, -1.0f);
+                targetRotation = Quaternion.Euler(0, -180, 0);
                 break;
             case movementDirection.Left:
                 direction += new Vector3(-1.0f, 0.0f, 0.0f);
+                targetRotation = Quaternion.Euler(0, -90, 0);
                 break;
             case movementDirection.Right:
-                direction += new Vector3(1.0f, 0.0f, 1.0f);
+                direction += new Vector3(1.0f, 0.0f, 0.0f);
+                targetRotation = Quaternion.Euler(0, 90, 0);
                 break;
             default:
                 break;
         }
+        transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, .1f);
     }
 
     public void Jump()
     {
-        direction += new Vector3(0.0f, 50.0f, 0.0f);
+        direction += new Vector3(0.0f, 20.0f, 0.0f);
     }
 
     void KeepUpright()
