@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public GameObject pushBox;
     public float movementSpeed;
     private Vector3 direction;
 
     private Rigidbody myRigidBody;
+
+    public bool isDead = false;
 
     public enum movementDirection
     {
@@ -34,6 +37,8 @@ public class PlayerMovement : MonoBehaviour
 
     public void MoveDirection(movementDirection e)
     {
+        if (isDead)
+            return;
         Quaternion targetRotation = transform.rotation;
         switch(e)
         {
@@ -67,5 +72,16 @@ public class PlayerMovement : MonoBehaviour
     void KeepUpright()
     {
         transform.rotation = Quaternion.Euler(0.0f, 0.0f, 0.0f);
+    }
+
+    public void Kill()
+    {
+        myRigidBody.constraints = RigidbodyConstraints.None;
+        isDead = true;
+    }
+
+    public void Push()
+    {
+        pushBox.GetComponent<BoxCollider>().enabled = !pushBox.GetComponent<BoxCollider>().enabled;
     }
 }

@@ -14,6 +14,7 @@ public class PlayerControls : MonoBehaviour
         public KeyCode Forwards;
         public KeyCode Backwards;
         public KeyCode Jump;
+        public KeyCode Push;
     }
     private struct JoystickMovement
     {
@@ -22,6 +23,7 @@ public class PlayerControls : MonoBehaviour
         public string Forwards;
         public string Backwards;
         public string Jump;
+        public string Push;
     }
     private KeyboardMovement keyboard;
     private JoystickMovement joystick;
@@ -46,34 +48,39 @@ public class PlayerControls : MonoBehaviour
             if (Input.GetButton(joystick.Left))
             {
                 movement.MoveDirection(PlayerMovement.movementDirection.Left);
-                Debug.Log("Left");
+                //Debug.Log("Left");
             }
 
             //Move Right
             if (Input.GetButton(joystick.Right))
             {
                 movement.MoveDirection(PlayerMovement.movementDirection.Right);
-                Debug.Log("Right");
+                //Debug.Log("Right");
             }
 
             //Move Up
             if (Input.GetButton(joystick.Forwards))
             {
                 movement.MoveDirection(PlayerMovement.movementDirection.Forward);
-                Debug.Log("Forwards");
+                //Debug.Log("Forwards");
             }
 
             //Move Down
             if (Input.GetButton(joystick.Backwards))
             {
                 movement.MoveDirection(PlayerMovement.movementDirection.Backward);
-                Debug.Log("Backwards");
+                //Debug.Log("Backwards");
             }
 
             //Jump
             if (Input.GetButton(joystick.Jump))
             {
                 movement.Jump();
+            }
+
+            if(Input.GetButton(joystick.Push))
+            {
+                movement.Push();
             }
         }
         else
@@ -107,6 +114,11 @@ public class PlayerControls : MonoBehaviour
             {
                 movement.Jump();
             }
+
+            if(Input.GetKeyDown(keyboard.Push))
+            {
+                movement.Push();
+            }
         }
     }
     public void ControlMapping(int playerController,bool isUsingController)
@@ -126,6 +138,7 @@ public class PlayerControls : MonoBehaviour
                         joystick.Forwards = "Forward_P1";
                         joystick.Backwards = "Backward_P1";
                         joystick.Jump = "Jump_P1";
+                        joystick.Push = "Push_P1";
                         break;
                     case 1:
                         joystick.Left = "Left_P2";
@@ -133,6 +146,7 @@ public class PlayerControls : MonoBehaviour
                         joystick.Forwards = "Forward_P2";
                         joystick.Backwards = "Backward_P2";
                         joystick.Jump = "Jump_P2";
+                        joystick.Push = "Push_P2";
                         break;
                     case 2:
                         joystick.Left = "Left_P3";
@@ -140,6 +154,7 @@ public class PlayerControls : MonoBehaviour
                         joystick.Forwards = "Forward_P3";
                         joystick.Backwards = "Backward_P3";
                         joystick.Jump = "Jump_P3";
+                        joystick.Push = "Push_P3";
                         break;
                     case 3:
                         joystick.Left = "Left_P4";
@@ -147,6 +162,7 @@ public class PlayerControls : MonoBehaviour
                         joystick.Forwards = "Forward_P4";
                         joystick.Backwards = "Backward_P4";
                         joystick.Jump = "Jump_P4";
+                        joystick.Push = "Push_P4";
                         break;
                 }
                 manager.GetComponent<InterfaceManager>().numberOfControllers++;
@@ -160,6 +176,7 @@ public class PlayerControls : MonoBehaviour
                 keyboard.Right = KeyCode.D;
                 keyboard.Forwards = KeyCode.W;
                 keyboard.Backwards = KeyCode.S;
+                keyboard.Push = KeyCode.Q;
 
                 break;
             case 1:
@@ -167,6 +184,7 @@ public class PlayerControls : MonoBehaviour
                 keyboard.Right = KeyCode.L;
                 keyboard.Forwards = KeyCode.I;
                 keyboard.Backwards = KeyCode.K;
+                keyboard.Push = KeyCode.U;
 
                 break;
             case 2:
@@ -174,6 +192,7 @@ public class PlayerControls : MonoBehaviour
                 keyboard.Right = KeyCode.RightArrow;
                 keyboard.Forwards = KeyCode.UpArrow;
                 keyboard.Backwards = KeyCode.DownArrow;
+                keyboard.Push = KeyCode.Slash;
 
                 break;
             case 3:
@@ -181,6 +200,7 @@ public class PlayerControls : MonoBehaviour
                 keyboard.Right = KeyCode.Keypad6;
                 keyboard.Forwards = KeyCode.Keypad8;
                 keyboard.Backwards = KeyCode.Keypad2;
+                keyboard.Backwards = KeyCode.Keypad7;
             break;
         }
         usingController = false;

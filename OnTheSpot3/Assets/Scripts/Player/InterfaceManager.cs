@@ -25,8 +25,9 @@ public class InterfaceManager : MonoBehaviour
         for(int i = 0; i < number; i++)
         {
             playersCreated[i] = Instantiate(characters, new Vector3(startingX, 2, 0), Quaternion.identity);
-            startingX += 10;
+            startingX += 2;
         }
+        GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>().players = playersCreated;
     }
     public void SetupControls(bool isUsingController)
     {
