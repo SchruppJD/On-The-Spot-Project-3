@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 577805223}
   - component: {fileID: 577805222}
   - component: {fileID: 577805224}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: TrapDoor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -88,7 +88,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6915723015186985568}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RightPivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -122,7 +122,7 @@ GameObject:
   - component: {fileID: 1513997620516074876}
   - component: {fileID: 5673748684364023257}
   - component: {fileID: 2250866114829940224}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: LeftDoor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -214,7 +214,7 @@ GameObject:
   - component: {fileID: 4005338778129754535}
   - component: {fileID: 5320889726932304274}
   - component: {fileID: 8632451431576381400}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RightDoor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -303,7 +303,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9179370591389475474}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: LeftPivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}

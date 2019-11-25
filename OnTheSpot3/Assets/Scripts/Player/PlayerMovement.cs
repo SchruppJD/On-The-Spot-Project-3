@@ -11,6 +11,9 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody myRigidBody;
 
     public bool isDead = false;
+    public bool isDummy = false;
+
+    private float pushTimer = 0.1f;
 
     public enum movementDirection
     {
@@ -26,6 +29,22 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // check for pushbox
+        if (pushBox.GetComponent<BoxCollider>().enabled)
+        {
+            pushTimer -= Time.deltaTime;
+            if (pushTimer < 0.0f)
+            {
+                pushBox.GetComponent<BoxCollider>().enabled = false;
+            }
+        }
+
+        // create transparency
+        if (isDead)
+        {
+            Material baseMat = GetComponent<Renderer>().material;
+            baseMat.color = new Color(baseMat.color.r, baseMat.color.g, baseMat.color.b, 0.5f);
+        }
         MoveCharacter();
     }
 
@@ -37,7 +56,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void MoveDirection(movementDirection e)
     {
-        if (isDead)
+        if (isDummy)
             return;
         Quaternion targetRotation = transform.rotation;
         switch(e)
@@ -76,12 +95,34 @@ public class PlayerMovement : MonoBehaviour
 
     public void Kill()
     {
-        myRigidBody.constraints = RigidbodyConstraints.None;
-        isDead = true;
+        if (!isDead)
+        {
+            myRigidBody.constraints = RigidbodyConstraints.None;
+            myRigidBody.mass = 0.5f;
+            GameObject dummy = Instantiate(gameObject, transform.position, Quaternion.identity);
+            dummy.GetComponent<PlayerMovement>().isDummy = true;
+            dummy.GetComponent<Renderer>().material = GetComponent<Renderer>().material;
+            gameObject.layer = 9;
+            foreach (Transform child in transform)
+            {
+                // pushing still works
+                if (child.name != "PushBox")
+                {
+                    child.gameObject.layer = 9;
+                }
+            }
+            // ignore trap collision
+            Physics.IgnoreLayerCollision(8, 9);
+            // ignore player collision
+            Physics.IgnoreLayerCollision(9, 10);
+            transform.position = new Vector3(transform.position.x, transform.position.y + 3, transform.position.z);
+            isDead = true;
+        }
     }
 
     public void Push()
     {
-        pushBox.GetComponent<BoxCollider>().enabled = !pushBox.GetComponent<BoxCollider>().enabled;
+        pushTimer = 0.1f;
+        pushBox.GetComponent<BoxCollider>().enabled = true;
     }
 }

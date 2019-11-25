@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8086437266887428405}
   - component: {fileID: 1354647331549443903}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: PushBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -60,7 +60,7 @@ GameObject:
   - component: {fileID: 225518268}
   - component: {fileID: 225518272}
   - component: {fileID: 225518273}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -193,6 +193,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pushBox: {fileID: 1839584220332439724}
   movementSpeed: 5
+  isDead: 0
+  isDummy: 0
 --- !u!114 &225518273
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -217,7 +219,7 @@ GameObject:
   - component: {fileID: 5149095617758140981}
   - component: {fileID: 5149095617758140978}
   - component: {fileID: 5149095617758140979}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Glasses
   m_TagString: Untagged
   m_Icon: {fileID: 0}
