@@ -12,7 +12,7 @@ public class InterfaceManager : MonoBehaviour
     public GameObject[] playersCreated;
     public int numberOfControllers;
     public GameObject characters;
-    private int startingX = 0;
+    private int startingZ = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,10 +24,11 @@ public class InterfaceManager : MonoBehaviour
         numberOfPlayers = number;
         for(int i = 0; i < number; i++)
         {
-            playersCreated[i] = Instantiate(characters, new Vector3(startingX, 2, 0), Quaternion.identity);
-            startingX += 2;
+            playersCreated[i] = Instantiate(characters, new Vector3(0, 2, startingZ), Quaternion.identity);
+            startingZ += 2;
         }
         GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>().players = playersCreated;
+        GameObject.FindGameObjectWithTag("GameController").GetComponent<roomManager>().enabled = true;
     }
     public void SetupControls(bool isUsingController)
     {
