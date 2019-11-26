@@ -45,7 +45,7 @@ public class roomConnector : MonoBehaviour
         openLeft();
         sealRight();
 
-        InvokeRepeating("checkAlivePlayers", 2.0f, 5f);
+        InvokeRepeating("checkAlivePlayers", 2.0f, 2f);
     }
 
     
@@ -125,10 +125,13 @@ public class roomConnector : MonoBehaviour
     private void OnTriggerExit(Collider other)
     {
         playersInZone.Remove(other.gameObject);
+
+        /*
         if(active == false && playersInZone.Count == 0)
         {
             sealRight();
         }
+        */
     }
 
     void roomFinished()

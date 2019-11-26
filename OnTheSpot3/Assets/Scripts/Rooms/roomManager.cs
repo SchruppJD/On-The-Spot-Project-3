@@ -113,6 +113,7 @@ public class roomManager : MonoBehaviour
             players[i].GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
             Material baseMat = players[i].GetComponent<Renderer>().material;
             baseMat.color = new Color(baseMat.color.r, baseMat.color.g, baseMat.color.b, 1.0f);
+            players[i].layer = 10;
             //}
         }
         GameObject[] allPlayers = GameObject.FindGameObjectsWithTag("Player");
