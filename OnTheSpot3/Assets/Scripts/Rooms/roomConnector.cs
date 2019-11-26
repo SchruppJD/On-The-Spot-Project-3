@@ -8,7 +8,7 @@ public class roomConnector : MonoBehaviour
     bool active;
 
     roomManager GameController;
-    GameObject[] players;
+    List<GameObject> players;
     int alivePlayers;
     List<GameObject> donePlayers;
     List<GameObject> playersInZone;
@@ -23,11 +23,19 @@ public class roomConnector : MonoBehaviour
     {
         active = true;
         GameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<roomManager>();
-        players = GameObject.FindGameObjectsWithTag("Player");
+        players = new List<GameObject>();
+        GameObject[] allPlayers = GameObject.FindGameObjectsWithTag("Player");
+        for (int i = 0; i < GameObject.FindGameObjectsWithTag("Player").Length; i++)
+        {
+            if (allPlayers[i].GetComponent<PlayerMovement>().isDummy == false)
+            {
+                players.Add(allPlayers[i]);
+            }
+        }
         //Debug.Log("Players: " + players.Length);
         donePlayers = new List<GameObject>();
         playersInZone = new List<GameObject>();
-        alivePlayers = players.Length;
+        alivePlayers = players.Count;
 
         rightEdge = transform.Find("RightEdge").gameObject;
         rightWall = rightEdge.transform.GetChild(0).GetComponentInChildren<BoxCollider>();
@@ -52,8 +60,8 @@ public class roomConnector : MonoBehaviour
     {
         if (active)
         {
-            alivePlayers = players.Length;
-            for (int i = 0; i < players.Length; i++)
+            alivePlayers = players.Count;
+            for (int i = 0; i < players.Count; i++)
             {
                 if (players[i].transform.position.y < 0)
                 {

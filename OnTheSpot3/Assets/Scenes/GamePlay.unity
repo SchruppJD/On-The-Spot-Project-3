@@ -1936,7 +1936,7 @@ GameObject:
   - component: {fileID: 1798577992}
   - component: {fileID: 1798577991}
   m_Layer: 0
-  m_Name: GameManager
+  m_Name: RoomManager
   m_TagString: GameController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1969,6 +1969,8 @@ MonoBehaviour:
   - {fileID: 7053262669133090045, guid: 2aa9e7a0ffded8b459ff7cb8cf1f0712, type: 3}
   - {fileID: 2938607207703759545, guid: fde667b722b6fae4d81a6fa9c376ca74, type: 3}
   - {fileID: 7972916712734528726, guid: 636e31da8ebe7c74b8646a407be5d615, type: 3}
+  - {fileID: 3441354169605594077, guid: 9bc993c85cdab084095efef5c285178d, type: 3}
+  - {fileID: 5885621464309321054, guid: da5bdd911e454914395ea4197479c9b4, type: 3}
 --- !u!4 &1798577992
 Transform:
   m_ObjectHideFlags: 0
