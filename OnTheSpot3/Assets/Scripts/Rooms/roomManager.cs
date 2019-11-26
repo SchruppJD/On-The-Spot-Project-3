@@ -102,16 +102,26 @@ public class roomManager : MonoBehaviour
     void respawnPlayers(){
         for (int i = 0; i < players.Length; i++)
         {
-            //Debug.Log(players.Length);
-            //Debug.Log(players[i].transform.position.y);
-            //if(players[i].transform.position.y < 0)
-            //{
-           players[i].GetComponent<Rigidbody>().velocity = Vector3.zero;
-           players[i].transform.position = new Vector3(activeConnector.transform.position.x, 1.5f, (activeConnector.transform.position.z - 5) + (3*i)  );
-           players[i].GetComponent<PlayerMovement>().isDead = false;
-           players[i].transform.rotation = Quaternion.Euler(0, 90, 0);
-           players[i].GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
+             //Debug.Log(players.Length);
+             //Debug.Log(players[i].transform.position.y);
+             //if(players[i].transform.position.y < 0)
+             //{
+            players[i].GetComponent<Rigidbody>().velocity = Vector3.zero;
+            players[i].transform.position = new Vector3(activeConnector.transform.position.x, 1.5f, (activeConnector.transform.position.z - 5) + (3*i)  );
+            players[i].GetComponent<PlayerMovement>().isDead = false;
+            players[i].transform.rotation = Quaternion.Euler(0, 90, 0);
+            players[i].GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
+            Material baseMat = players[i].GetComponent<Renderer>().material;
+            baseMat.color = new Color(baseMat.color.r, baseMat.color.g, baseMat.color.b, 1.0f);
             //}
+        }
+        GameObject[] allPlayers = GameObject.FindGameObjectsWithTag("Player");
+        for (int i = allPlayers.Length - 1; i >= 0; i--)
+        {
+            if(allPlayers[i].GetComponent<PlayerMovement>().isDummy == true)
+            {
+                Destroy(allPlayers[i]);
+            }
         }
     }
      
