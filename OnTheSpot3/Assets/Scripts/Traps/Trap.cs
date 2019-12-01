@@ -12,6 +12,9 @@ public abstract class Trap : MonoBehaviour
         Deactive
     }
 
+    protected Collider detectionArea;
+    protected Animator animator;
+
     protected float triggerChance;
     protected TrapState currentState;
     //protected GameObject[] players;

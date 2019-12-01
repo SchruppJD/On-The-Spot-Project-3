@@ -4,16 +4,13 @@ using UnityEngine;
 
 public class TrapDoor : Trap
 {
-    Collider detectionArea;
-    Animator animator;
-
     float openTime = 0;
     float timeToBeLeftOpen;
 
     private new void Start()
     {
         base.Start();
-        triggerChance = 0.75f;
+        triggerChance = 0.25f;
         detectionArea = GetComponent<BoxCollider>();
         reactivateTime = 0.5f;
         animator = GetComponent<Animator>();

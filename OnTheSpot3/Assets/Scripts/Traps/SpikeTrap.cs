@@ -2,26 +2,27 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SawBlade : Trap
+public class SpikeTrap : Trap
 {
-    public GameObject leftBlade;
-    public GameObject rightBlade;
+    public GameObject killBox;
+
+    float upTime = 0;
+    float timeToBeUp;
 
     private new void Start()
     {
         base.Start();
-        //players = GameObject.FindGameObjectsWithTag("Player");
-        currentState = TrapState.Active;
-        triggerChance = .5f;
+        triggerChance = 0.75f;
         detectionArea = GetComponent<BoxCollider>();
         reactivateTime = 0.5f;
         animator = GetComponent<Animator>();
+        timeToBeUp = 1;
     }
 
     protected override bool Activate()
     {
         GameObject[] players = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>().players;
-        for(int i = 0; i < players.Length; i++)
+        for (int i = 0; i < players.Length; i++)
         {
             if (detectionArea.bounds.Intersects(players[i].GetComponent<Collider>().bounds))
             {
@@ -47,18 +48,25 @@ public class SawBlade : Trap
 
     protected override bool Trigger()
     {
+        upTime += Time.deltaTime;
+
         GameObject[] players = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>().players;
         for(int i = 0; i < players.Length; i++)
         {
-            if(players[i].GetComponent<Collider>().bounds.Intersects(leftBlade.GetComponent<Collider>().bounds))
-            {
-                players[i].GetComponent<PlayerMovement>().Kill();
-            }
-            else if (players[i].GetComponent<Collider>().bounds.Intersects(rightBlade.GetComponent<Collider>().bounds))
+            if(killBox.GetComponent<Collider>().bounds.Intersects(players[i].GetComponent<Collider>().bounds))
             {
                 players[i].GetComponent<PlayerMovement>().Kill();
             }
         }
-        return false;
+
+        if(upTime >= timeToBeUp)
+        {
+            animator.SetBool("Trigger", false);
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 }
