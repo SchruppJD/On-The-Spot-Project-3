@@ -49,7 +49,7 @@ public class EndLevel : MonoBehaviour
                 deathCount++;
             }
         }
-        Debug.Log(players.Length);
+        //Debug.Log(players.Length);
         if(deathCount == players.Length)
         {
             SceneManager.LoadScene(0);
