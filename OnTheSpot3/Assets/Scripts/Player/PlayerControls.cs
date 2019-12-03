@@ -26,7 +26,7 @@ public class PlayerControls : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         Movement();
     }
@@ -65,12 +65,12 @@ public class PlayerControls : MonoBehaviour
             }
 
             //Jump
-            if (playerGamepad.rightShoulder.isPressed)
+            if (playerGamepad.rightShoulder.wasReleasedThisFrame)
             {
                 movement.Jump();
             }
 
-            if(playerGamepad.rightTrigger.isPressed)
+            if(playerGamepad.rightTrigger.wasReleasedThisFrame)
             {
                 movement.Push();
             }
