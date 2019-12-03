@@ -45,7 +45,7 @@ public class InterfaceManager : MonoBehaviour
             startingZ += 2;
         }
         GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>().players = playersCreated;
-        //GameObject.FindGameObjectWithTag("GameController").GetComponent<roomManager>().enabled = true;
+        GameObject.FindGameObjectWithTag("GameController").GetComponent<roomManager>().enabled = true;
     }
     public void DisplayMenu()
     {
