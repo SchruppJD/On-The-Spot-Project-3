@@ -82,9 +82,15 @@ public class PlayerMovement : MonoBehaviour
         transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, .1f);
     }
 
-    public void Jump()
+    public bool Jump()
     {
+        if(isDead)
+        {
+            return true;
+        }
+
         direction += new Vector3(0.0f, 20.0f, 0.0f);
+        return false;
     }
 
     void KeepUpright()
@@ -166,5 +172,13 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
+    }
+
+    public bool Reactivate()
+    {
+        if (!isDead)
+            return false;
+
+        return Jump();
     }
 }

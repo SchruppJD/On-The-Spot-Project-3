@@ -46,6 +46,14 @@ public class Snowman : Trap
 
     protected override bool Reset()
     {
+        GameObject[] players = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>().players;
+        for (int i = 0; i < players.Length; i++)
+        {
+            if (players[i].GetComponent<PlayerMovement>().isDead && detectionArea.bounds.Intersects(players[i].GetComponent<Collider>().bounds))
+            {
+                return players[i].GetComponent<PlayerMovement>().Reactivate();
+            }
+        }
         return false;
     }
 
