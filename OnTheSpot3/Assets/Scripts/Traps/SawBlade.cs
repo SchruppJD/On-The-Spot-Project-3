@@ -10,8 +10,6 @@ public class SawBlade : Trap
     private new void Start()
     {
         base.Start();
-        //players = GameObject.FindGameObjectsWithTag("Player");
-        currentState = TrapState.Active;
         triggerChance = .5f;
         detectionArea = GetComponent<BoxCollider>();
         reactivateTime = 0.5f;
