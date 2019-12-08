@@ -15,6 +15,8 @@ public abstract class Trap : MonoBehaviour
     protected Collider detectionArea;
     protected Animator animator;
 
+    protected GameObject[] players;
+
     protected float triggerChance;
     protected TrapState currentState;
     protected float reactivateTime;
@@ -27,7 +29,8 @@ public abstract class Trap : MonoBehaviour
 
     void Update()
     {
-        switch(currentState)
+        players = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>().players;
+        switch (currentState)
         {
             case TrapState.Active:
                 if(Activate())

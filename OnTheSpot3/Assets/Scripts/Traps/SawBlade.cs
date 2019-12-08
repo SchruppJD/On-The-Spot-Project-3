@@ -45,7 +45,6 @@ public class SawBlade : Trap
 
     protected override bool Trigger()
     {
-        GameObject[] players = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>().players;
         for(int i = 0; i < players.Length; i++)
         {
             if(players[i].GetComponent<Collider>().bounds.Intersects(leftBlade.GetComponent<Collider>().bounds))

@@ -23,7 +23,6 @@ public class Snowman : Trap
 
     protected override bool Activate()
     {
-        GameObject[] players = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>().players;
         for (int i = 0; i < players.Length; i++)
         {
             if (detectionArea.bounds.Intersects(players[i].GetComponent<Collider>().bounds))
@@ -46,7 +45,6 @@ public class Snowman : Trap
 
     protected override bool Reset()
     {
-        GameObject[] players = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>().players;
         for (int i = 0; i < players.Length; i++)
         {
             if (players[i].GetComponent<PlayerMovement>().isDead && detectionArea.bounds.Intersects(players[i].GetComponent<Collider>().bounds))
@@ -67,10 +65,9 @@ public class Snowman : Trap
 
         if(currentPosition != targetPosition)
         {
-            gameObject.transform.position += gameObject.transform.forward;
+            gameObject.transform.position += (targetPosition - currentPosition).normalized;
             currentPosition = gameObject.transform.position;
 
-            GameObject[] players = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>().players;
             for (int i = 0; i < players.Length; i++)
             {
                 if (hitbox.GetComponent<Collider>().bounds.Intersects(players[i].GetComponent<Collider>().bounds))
