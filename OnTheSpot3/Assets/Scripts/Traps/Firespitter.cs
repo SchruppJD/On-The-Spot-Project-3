@@ -24,7 +24,6 @@ public class Firespitter : Trap
 
     protected override bool Activate()
     {
-        GameObject[] players = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>().players;
         for (int i = 0; i < players.Length; i++)
         {
             if (detectionArea.bounds.Intersects(players[i].GetComponent<Collider>().bounds))

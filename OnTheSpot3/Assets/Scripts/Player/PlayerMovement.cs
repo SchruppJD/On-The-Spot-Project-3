@@ -10,6 +10,7 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody myRigidBody;
 
     public bool isDead = false;
+    bool resetButton = false;
     public bool isDummy = false;
 
     // this is the player who most recently pushed this player
@@ -82,15 +83,14 @@ public class PlayerMovement : MonoBehaviour
         transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, .1f);
     }
 
-    public bool Jump()
+    public void Jump()
     {
         if(isDead)
         {
-            return true;
+            resetButton = true;
         }
 
         direction += new Vector3(0.0f, 20.0f, 0.0f);
-        return false;
     }
 
     void KeepUpright()
@@ -105,6 +105,7 @@ public class PlayerMovement : MonoBehaviour
             myRigidBody.constraints = RigidbodyConstraints.None;
             myRigidBody.mass = 0.5f;
             GameObject dummy = Instantiate(gameObject, transform.position, Quaternion.identity);
+            myRigidBody.constraints = RigidbodyConstraints.FreezeRotation;
             dummy.GetComponent<PlayerMovement>().isDummy = true;
             dummy.GetComponent<Renderer>().material = GetComponent<Renderer>().material;
             gameObject.layer = 9;
@@ -179,6 +180,11 @@ public class PlayerMovement : MonoBehaviour
         if (!isDead)
             return false;
 
-        return Jump();
+        if(resetButton)
+        {
+            resetButton = false;
+            return true;
+        }
+        return false;
     }
 }
