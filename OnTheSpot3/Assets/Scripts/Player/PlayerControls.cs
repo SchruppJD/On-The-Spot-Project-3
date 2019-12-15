@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.InputSystem;
 using UnityEngine;
 
 public class PlayerControls : MonoBehaviour
@@ -16,17 +17,8 @@ public class PlayerControls : MonoBehaviour
         public KeyCode Jump;
         public KeyCode Push;
     }
-    private struct JoystickMovement
-    {
-        public string Left;
-        public string Right;
-        public string Forwards;
-        public string Backwards;
-        public string Jump;
-        public string Push;
-    }
+    private Gamepad playerGamepad;
     private KeyboardMovement keyboard;
-    private JoystickMovement joystick;
     // Start is called before the first frame update
     void Start()
     {
@@ -34,7 +26,7 @@ public class PlayerControls : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         Movement();
     }
@@ -43,42 +35,42 @@ public class PlayerControls : MonoBehaviour
     {
         if (usingController)
         {
-            
+            Vector2 playerMovement = playerGamepad.leftStick.ReadValue();
             //Move left
-            if (Input.GetButton(joystick.Left))
+            if (playerMovement.x < -0.2)
             {
                 movement.MoveDirection(PlayerMovement.movementDirection.Left);
                 //Debug.Log("Left");
             }
 
             //Move Right
-            if (Input.GetButton(joystick.Right))
+            if (playerMovement.x > 0.2)
             {
                 movement.MoveDirection(PlayerMovement.movementDirection.Right);
                 //Debug.Log("Right");
             }
 
             //Move Up
-            if (Input.GetButton(joystick.Forwards))
+            if (playerMovement.y > 0.2)
             {
                 movement.MoveDirection(PlayerMovement.movementDirection.Forward);
                 //Debug.Log("Forwards");
             }
 
             //Move Down
-            if (Input.GetButton(joystick.Backwards))
+            if (playerMovement.y < -0.2)
             {
                 movement.MoveDirection(PlayerMovement.movementDirection.Backward);
                 //Debug.Log("Backwards");
             }
 
             //Jump
-            if (Input.GetButton(joystick.Jump))
+            if (playerGamepad.rightShoulder.wasReleasedThisFrame)
             {
                 movement.Jump();
             }
 
-            if(Input.GetButton(joystick.Push))
+            if(playerGamepad.rightTrigger.wasReleasedThisFrame)
             {
                 movement.Push();
             }
@@ -121,54 +113,8 @@ public class PlayerControls : MonoBehaviour
             }
         }
     }
-    public void ControlMapping(int playerController,bool isUsingController)
+    public void ControlMapping(int playerController)
     {
-        if (isUsingController)
-        {
-            usingController = true;
-            GameObject manager = GameObject.Find("IfaceManager");
-            int currentlyUsedControllers = manager.GetComponent<InterfaceManager>().numberOfControllers;
-            if(currentlyUsedControllers != Input.GetJoystickNames().Length)
-            {
-                switch (currentlyUsedControllers)
-                {
-                    case 0:
-                        joystick.Left = "Left_P1";
-                        joystick.Right = "Right_P1";
-                        joystick.Forwards = "Forward_P1";
-                        joystick.Backwards = "Backward_P1";
-                        joystick.Jump = "Jump_P1";
-                        joystick.Push = "Push_P1";
-                        break;
-                    case 1:
-                        joystick.Left = "Left_P2";
-                        joystick.Right = "Right_P2";
-                        joystick.Forwards = "Forward_P2";
-                        joystick.Backwards = "Backward_P2";
-                        joystick.Jump = "Jump_P2";
-                        joystick.Push = "Push_P2";
-                        break;
-                    case 2:
-                        joystick.Left = "Left_P3";
-                        joystick.Right = "Right_P3";
-                        joystick.Forwards = "Forward_P3";
-                        joystick.Backwards = "Backward_P3";
-                        joystick.Jump = "Jump_P3";
-                        joystick.Push = "Push_P3";
-                        break;
-                    case 3:
-                        joystick.Left = "Left_P4";
-                        joystick.Right = "Right_P4";
-                        joystick.Forwards = "Forward_P4";
-                        joystick.Backwards = "Backward_P4";
-                        joystick.Jump = "Jump_P4";
-                        joystick.Push = "Push_P4";
-                        break;
-                }
-                manager.GetComponent<InterfaceManager>().numberOfControllers++;
-            }
-            return;
-        }
         switch (playerController)
         {
             case 0:
@@ -177,7 +123,7 @@ public class PlayerControls : MonoBehaviour
                 keyboard.Forwards = KeyCode.W;
                 keyboard.Backwards = KeyCode.S;
                 keyboard.Push = KeyCode.Q;
-
+                keyboard.Jump = KeyCode.E;
                 break;
             case 1:
                 keyboard.Left = KeyCode.J;
@@ -185,25 +131,32 @@ public class PlayerControls : MonoBehaviour
                 keyboard.Forwards = KeyCode.I;
                 keyboard.Backwards = KeyCode.K;
                 keyboard.Push = KeyCode.U;
-
+                keyboard.Jump = KeyCode.O;
                 break;
             case 2:
-                keyboard.Left = KeyCode.LeftArrow;
-                keyboard.Right = KeyCode.RightArrow;
-                keyboard.Forwards = KeyCode.UpArrow;
-                keyboard.Backwards = KeyCode.DownArrow;
-                keyboard.Push = KeyCode.Slash;
-
+                keyboard.Left = KeyCode.Delete;
+                keyboard.Right = KeyCode.PageDown;
+                keyboard.Forwards = KeyCode.Home;
+                keyboard.Backwards = KeyCode.End;
+                keyboard.Push = KeyCode.Insert;
+                keyboard.Jump = KeyCode.PageUp;
                 break;
             case 3:
                 keyboard.Left = KeyCode.Keypad4;
                 keyboard.Right = KeyCode.Keypad6;
                 keyboard.Forwards = KeyCode.Keypad8;
-                keyboard.Backwards = KeyCode.Keypad2;
-                keyboard.Backwards = KeyCode.Keypad7;
+                keyboard.Backwards = KeyCode.Keypad5;
+                keyboard.Push = KeyCode.Keypad7;
+                keyboard.Jump = KeyCode.Keypad9;
             break;
         }
         usingController = false;
+        return;
+    }
+    public void ControlMapping(Gamepad gamePadToBeUsed)
+    {
+        playerGamepad = gamePadToBeUsed;
+        usingController = true;
         return;
     }
 }

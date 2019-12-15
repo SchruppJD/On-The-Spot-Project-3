@@ -7,7 +7,10 @@ public class CameraMove : MonoBehaviour
     void Update()
     {
         if(GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>().players.Length > 0)
-            gameObject.transform.position = CenterOfPlayers(GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>().players);
+        {
+            gameObject.transform.position = Vector3.Lerp(transform.position, CenterOfPlayers(GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>().players), .1f);
+        }
+            
     }
 
     Vector3 CenterOfPlayers(GameObject[] players)

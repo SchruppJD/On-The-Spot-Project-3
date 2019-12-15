@@ -12,21 +12,25 @@ public abstract class Trap : MonoBehaviour
         Deactive
     }
 
+    protected Collider detectionArea;
+    protected Animator animator;
+
+    protected GameObject[] players;
+
     protected float triggerChance;
     protected TrapState currentState;
-    //protected GameObject[] players;
     protected float reactivateTime;
     float currentTime = 0;
 
     protected void Start()
     {
-        //players = GameObject.FindGameObjectsWithTag("Player");
         currentState = TrapState.Active;
     }
 
     void Update()
     {
-        switch(currentState)
+        players = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>().players;
+        switch (currentState)
         {
             case TrapState.Active:
                 if(Activate())
