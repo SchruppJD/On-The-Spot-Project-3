@@ -6,43 +6,47 @@ public class GameStart : MonoBehaviour
 {
     private float timer;
     private bool gameStarted = false;
+    private Transform camera;
 
-    private void Awake()
+    private void Start()
     {
         timer = 0;
+        camera = Camera.main.transform;
     }
 
     private void Update()
     {
         if(gameStarted)
         {
-            if (timer > 3)
+            //timer is up
+            if (timer > 3.6f)
             {
-                transform.GetChild(0).gameObject.SetActive(false);
-                transform.GetChild(1).gameObject.SetActive(false);
-                transform.GetChild(2).gameObject.SetActive(false);
+                camera.GetChild(0).gameObject.SetActive(false);
+                camera.GetChild(1).gameObject.SetActive(false);
+                camera.GetChild(2).gameObject.SetActive(false);
+                //GameObject.Find("RoomManager").GetComponent<roomManager>().changeRoom();
                 Destroy(GetComponent<GameStart>());
             }
-            else if (timer > 2)
+            //timer has one second left
+            else if (timer > 2.2f)
             {
-                transform.GetChild(0).gameObject.SetActive(false);
-                transform.GetChild(1).gameObject.SetActive(false);
-                transform.GetChild(2).gameObject.SetActive(true);
-                Debug.Log("1");
+                camera.GetChild(0).gameObject.SetActive(false);
+                camera.GetChild(1).gameObject.SetActive(false);
+                camera.GetChild(2).gameObject.SetActive(true);
             }
+            //timer has two seconds left
             else if(timer > 1)
             {
-                transform.GetChild(0).gameObject.SetActive(false);
-                transform.GetChild(1).gameObject.SetActive(true);
-                transform.GetChild(2).gameObject.SetActive(false);
-                Debug.Log("2");
+                camera.GetChild(0).gameObject.SetActive(false);
+                camera.GetChild(1).gameObject.SetActive(true);
+                camera.GetChild(2).gameObject.SetActive(false);
             }
+            //timer just started
             else
             {
-                transform.GetChild(0).gameObject.SetActive(true);
-                transform.GetChild(1).gameObject.SetActive(false);
-                transform.GetChild(2).gameObject.SetActive(false);
-                Debug.Log("3");
+                camera.GetChild(0).gameObject.SetActive(true);
+                camera.GetChild(1).gameObject.SetActive(false);
+                camera.GetChild(2).gameObject.SetActive(false);
             }
             timer += Time.deltaTime;
         }
