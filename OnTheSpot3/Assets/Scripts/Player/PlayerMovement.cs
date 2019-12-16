@@ -62,25 +62,25 @@ public class PlayerMovement : MonoBehaviour
         switch (e)
         {
             case movementDirection.Forward:
-                direction += new Vector3(0.0f, 0.0f, 1.0f);
+                direction += new Vector3(0.0f, 0.0f, 2.0f);
                 targetRotation = Quaternion.Euler(0, 0, 0);
                 break;
             case movementDirection.Backward:
-                direction += new Vector3(0.0f, 0.0f, -1.0f);
+                direction += new Vector3(0.0f, 0.0f, -2.0f);
                 targetRotation = Quaternion.Euler(0, -180, 0);
                 break;
             case movementDirection.Left:
-                direction += new Vector3(-1.0f, 0.0f, 0.0f);
+                direction += new Vector3(-2.0f, 0.0f, 0.0f);
                 targetRotation = Quaternion.Euler(0, -90, 0);
                 break;
             case movementDirection.Right:
-                direction += new Vector3(1.0f, 0.0f, 0.0f);
+                direction += new Vector3(2.0f, 0.0f, 0.0f);
                 targetRotation = Quaternion.Euler(0, 90, 0);
                 break;
             default:
                 break;
         }
-        transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, .3f);
+        transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, .4f);
     }
 
     public void Jump()
@@ -153,7 +153,7 @@ public class PlayerMovement : MonoBehaviour
 
         RaycastHit pushRayHit;
 
-        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out pushRayHit, 1.5f))
+        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward) * 3f, out pushRayHit, 1.5f))
         {
             foreach (GameObject player in players)
             {
@@ -168,7 +168,7 @@ public class PlayerMovement : MonoBehaviour
                 {
                     player.GetComponent<PlayerMovement>().lastPusher = gameObject;
                     player.GetComponent<PlayerMovement>().pusherTimer = 1.5f;
-                    player.GetComponent<Rigidbody>().AddForce(transform.forward * 300);
+                    player.GetComponent<Rigidbody>().AddForce(transform.forward * 450);
                 }
             }
         }

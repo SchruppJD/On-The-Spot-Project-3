@@ -42,8 +42,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1.5832686, z: 0.705729}
-  m_Center: {x: 0, y: -0.035341978, z: 0.7521684}
+  m_Size: {x: 2, y: 1.5832686, z: 2.0092516}
+  m_Center: {x: 0, y: -0.035341978, z: 1.40393}
 --- !u!1 &5149095616338342323
 GameObject:
   m_ObjectHideFlags: 0
@@ -191,10 +191,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f28414c998979ed428dd22a7a349a50a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pushBox: {fileID: 1839584220332439724}
   movementSpeed: 5
   isDead: 0
   isDummy: 0
+  lastPusher: {fileID: 0}
 --- !u!114 &225518273
 MonoBehaviour:
   m_ObjectHideFlags: 0
