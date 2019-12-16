@@ -25,6 +25,10 @@ public class Snowman : Trap
     {
         for (int i = 0; i < players.Length; i++)
         {
+            if (players[i].GetComponent<PlayerMovement>().isDead)
+            {
+                break;
+            }
             if (detectionArea.bounds.Intersects(players[i].GetComponent<Collider>().bounds))
             {
                 if (Random.Range(0, 1f) > triggerChance)
@@ -35,6 +39,7 @@ public class Snowman : Trap
                 }
                 else
                 {
+                    reset.SetActive(true);
                     currentState = TrapState.Deactive;
                     return false;
                 }
