@@ -588,6 +588,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e600412601e7a02499d00ddfd7881e25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  resetSign: {fileID: 7833780576087935283, guid: 9763b59312440ab458808ab670f3efc3,
+    type: 3}
   hitbox: {fileID: 1009040416}
 --- !u!1001 &8760372222681109185
 PrefabInstance:

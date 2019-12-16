@@ -4,7 +4,7 @@ using UnityEngine;
 
 public abstract class Trap : MonoBehaviour
 {
-    protected enum TrapState
+    public enum TrapState
     {
         Active,
         Reactivate,
@@ -18,13 +18,19 @@ public abstract class Trap : MonoBehaviour
     protected GameObject[] players;
 
     protected float triggerChance;
-    protected TrapState currentState;
+    public TrapState currentState;
     protected float reactivateTime;
     float currentTime = 0;
+
+    public GameObject resetSign;
+    protected GameObject reset;
 
     protected void Start()
     {
         currentState = TrapState.Active;
+        reset = Instantiate(resetSign, gameObject.transform);
+        reset.transform.position += new Vector3(0, 2, 0);
+        reset.SetActive(false);
     }
 
     void Update()
@@ -49,6 +55,7 @@ public abstract class Trap : MonoBehaviour
             case TrapState.Triggered:
                 if(Trigger())
                 {
+                    reset.SetActive(true);
                     currentState = TrapState.Deactive;
                 }
                 break;
@@ -56,6 +63,7 @@ public abstract class Trap : MonoBehaviour
             case TrapState.Deactive:
                 if(Reset())
                 {
+                    reset.SetActive(false);
                     currentState = TrapState.Active;
                 }
                 break;

@@ -80,7 +80,7 @@ public class PlayerMovement : MonoBehaviour
             default:
                 break;
         }
-        transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, .1f);
+        transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, .3f);
     }
 
     public void Jump()
