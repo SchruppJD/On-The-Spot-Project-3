@@ -24,6 +24,7 @@ public class GameStart : MonoBehaviour
                 camera.GetChild(0).gameObject.SetActive(false);
                 camera.GetChild(1).gameObject.SetActive(false);
                 camera.GetChild(2).gameObject.SetActive(false);
+                GameObject.Find("Smoke").GetComponent<PlayerKill>().isMoving = true;
                 //GameObject.Find("RoomManager").GetComponent<roomManager>().changeRoom();
                 Destroy(GetComponent<GameStart>());
             }

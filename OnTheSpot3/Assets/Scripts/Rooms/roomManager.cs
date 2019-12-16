@@ -58,7 +58,8 @@ public class roomManager : MonoBehaviour
         nextConnector = Instantiate(connectorRoom, new Vector3((activeRoom.transform.position.x) + (activeRoomWidth / 2) + (connectorRoomWidth / 2), 0, 0), Quaternion.identity);
 
         updateCamera();
-
+        GameObject.Find("Smoke").transform.position = new Vector3(activeConnector.transform.position.x - 15,GameObject.Find("Smoke").transform.position.y, GameObject.Find("Smoke").transform.position.z);
+        GameObject.Find("Smoke").GetComponent<PlayerKill>().ChangeSize(activeRoomWidth);
     }
 
     // Update is called once per frame
@@ -96,6 +97,8 @@ public class roomManager : MonoBehaviour
         activeRoom = nextRoom;
 
         newConnector();
+        GameObject.Find("Smoke").transform.position = new Vector3(activeRoom.transform.position.x - nextRoomWidth, GameObject.Find("Smoke").transform.position.y, GameObject.Find("Smoke").transform.position.z);
+        GameObject.Find("Smoke").GetComponent<PlayerKill>().ChangeSize(activeRoomWidth);
     }
 
     void newConnector(){

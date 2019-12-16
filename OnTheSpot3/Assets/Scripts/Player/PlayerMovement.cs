@@ -13,6 +13,7 @@ public class PlayerMovement : MonoBehaviour
     bool resetButton = false;
     public bool isDummy = false;
 
+
     // this is the player who most recently pushed this player
     public GameObject lastPusher;
 
