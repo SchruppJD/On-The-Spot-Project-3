@@ -91,7 +91,7 @@ public class PlayerMovement : MonoBehaviour
             resetButton = true;
         }
 
-        direction += new Vector3(0.0f, 20.0f, 0.0f);
+        //direction += new Vector3(0.0f, 20.0f, 0.0f);
     }
 
     void KeepUpright()
@@ -106,6 +106,8 @@ public class PlayerMovement : MonoBehaviour
             myRigidBody.constraints = RigidbodyConstraints.None;
             myRigidBody.mass = 0.5f;
             GameObject dummy = Instantiate(gameObject, transform.position, Quaternion.identity);
+            dummy.GetComponent<Rigidbody>().AddForce(new Vector3(0, 400, 0));
+            dummy.GetComponent<Rigidbody>().AddTorque(new Vector3(15, 24, 18));
             myRigidBody.constraints = RigidbodyConstraints.FreezeRotation;
             dummy.GetComponent<PlayerMovement>().isDummy = true;
             dummy.GetComponent<Renderer>().material = GetComponent<Renderer>().material;
