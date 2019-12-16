@@ -171,7 +171,7 @@ public class PlayerMovement : MonoBehaviour
                 {
                     player.GetComponent<PlayerMovement>().lastPusher = gameObject;
                     player.GetComponent<PlayerMovement>().pusherTimer = 1.5f;
-                    player.GetComponent<Rigidbody>().AddForce(transform.forward * 450);
+                    player.GetComponent<Rigidbody>().AddForce(transform.forward * 1000);
                 }
             }
         }

@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        
+        Physics.gravity = new Vector3(0, -19.6f, 0);
     }
 
     // Update is called once per frame

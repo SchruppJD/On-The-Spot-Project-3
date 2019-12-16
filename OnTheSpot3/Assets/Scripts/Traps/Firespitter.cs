@@ -19,7 +19,9 @@ public class Firespitter : Trap
         detectionArea = GetComponent<Collider>();
         triggerChance = .4f;
         amountOfShots = Random.Range(2, 5);
-        lengthOfShots = Random.Range(1, 3);
+        lengthOfShots = Random.Range(2, 5);
+        reactivateTime = 1;
+        TurnOffFire();
     }
 
     protected override bool Activate()
@@ -31,7 +33,7 @@ public class Firespitter : Trap
                 break;
             }
             if (detectionArea.bounds.Intersects(players[i].GetComponent<Collider>().bounds))
-            {
+            {   
                 if (Random.Range(0, 1f) > triggerChance)
                 {
                     return true;
@@ -60,16 +62,11 @@ public class Firespitter : Trap
 
     protected override bool Trigger()
     {
-        if(currentShots >= amountOfShots)
-        {
-            TurnOffFire();
-            return true;
-        }
+        
 
         if(fireOn)
         {
             time += Time.deltaTime;
-            Debug.Log(particles[0].GetComponent<ParticleSystem>().collision);
             for(int i = 0; i < players.Length; i++)
             {
                 for(int j = 0; j < killBoxes.Count; j++)
@@ -86,6 +83,7 @@ public class Firespitter : Trap
                 time = 0;
                 TurnOffFire();
             }
+            return false;
         }
         else
         {
@@ -93,6 +91,7 @@ public class Firespitter : Trap
             {
                 currentShots++;
                 TurnOnFire();
+                return false;
             }
             else
             {
@@ -101,17 +100,27 @@ public class Firespitter : Trap
                 {
                     currentShots++;
                     TurnOnFire();
+                    return false;
                 }
             }
         }
+
+        if (currentShots > amountOfShots)
+        {
+            TurnOffFire();
+            reset.transform.position += new Vector3(0, 3, 0);
+            return true;
+        }
+
         return false;
     }
 
     void TurnOnFire()
     {
+        
         for(int i = 0; i < particles.Count; i++)
         {
-            particles[i].SetActive(true);
+            particles[i].GetComponent<ParticleSystem>().Play();
         }
         fireOn = true;
     }
@@ -120,7 +129,7 @@ public class Firespitter : Trap
     {
         for (int i = 0; i < particles.Count; i++)
         {
-            particles[i].SetActive(false);
+            particles[i].GetComponent<ParticleSystem>().Stop();
         }
         fireOn = false;
     }

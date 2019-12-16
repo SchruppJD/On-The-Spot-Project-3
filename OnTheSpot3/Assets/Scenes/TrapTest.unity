@@ -197,7 +197,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 113944758}
   m_LocalRotation: {x: -0, y: -0.6855855, z: -0, w: 0.7279921}
-  m_LocalPosition: {x: 13.85, y: 3.94, z: -3.93}
+  m_LocalPosition: {x: 4.01, y: 3.94, z: 21.79}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -543,7 +543,7 @@ PrefabInstance:
     - target: {fileID: 5149095616338342327, guid: e9eb1ca7f2420fd48b0aeaec9a22c139,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.9
+      value: -1.896
       objectReference: {fileID: 0}
     - target: {fileID: 5149095616338342327, guid: e9eb1ca7f2420fd48b0aeaec9a22c139,
         type: 3}
@@ -553,7 +553,7 @@ PrefabInstance:
     - target: {fileID: 5149095616338342327, guid: e9eb1ca7f2420fd48b0aeaec9a22c139,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 17
+      value: 18.501
       objectReference: {fileID: 0}
     - target: {fileID: 5149095616338342327, guid: e9eb1ca7f2420fd48b0aeaec9a22c139,
         type: 3}
@@ -594,6 +594,10 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1049583302, guid: e9eb1ca7f2420fd48b0aeaec9a22c139, type: 3}
+      propertyPath: m_Mesh
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e9eb1ca7f2420fd48b0aeaec9a22c139, type: 3}
@@ -1098,7 +1102,22 @@ PrefabInstance:
     - target: {fileID: 6395960268143005290, guid: c793b51d89e05374da1a87a720c9b1ae,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5707744496872998733, guid: c793b51d89e05374da1a87a720c9b1ae,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4343189362260786130, guid: c793b51d89e05374da1a87a720c9b1ae,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6395960268143005287, guid: c793b51d89e05374da1a87a720c9b1ae,
+        type: 3}
+      propertyPath: EmissionModule.enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c793b51d89e05374da1a87a720c9b1ae, type: 3}

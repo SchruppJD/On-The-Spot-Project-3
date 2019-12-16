@@ -15,6 +15,7 @@ public class DeathRoom : Trap
         detectionArea = GetComponent<Collider>();
         animator = GetComponent<Animator>();
         triggerChance = .3f;
+        reactivateTime = 1;
     }
 
     protected override bool Activate()
