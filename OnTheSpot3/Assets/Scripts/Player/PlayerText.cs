@@ -18,7 +18,6 @@ public class PlayerText : MonoBehaviour
     void Update()
     {
         transform.LookAt(new Vector3(gameObject.transform.position.x, 0, Camera.main.transform.position.z));
-        //transform.localEulerAngles -= new Vector3(transform.localEulerAngles.x * 2, 0, 0);
         transform.localEulerAngles += new Vector3(60, 180, 0);
 
         if(gameObject.GetComponentInParent<PlayerMovement>().isDead)
@@ -32,8 +31,6 @@ public class PlayerText : MonoBehaviour
         players = GameObject.FindGameObjectWithTag("GameController").GetComponent<roomManager>().players;
         for (int i = 0; i < players.Length; i++)
         {
-            Debug.Log(gameObject.transform.position.z);
-            Debug.Log(players[i].transform.position.z);
             if (players[i].transform.position.z == Parent.transform.position.z)
             {
                 text = "Player " + (i + 1);
