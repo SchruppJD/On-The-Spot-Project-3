@@ -50,7 +50,8 @@ public class PlayerMovement : MonoBehaviour
 
     void MoveCharacter()
     {
-        myRigidBody.MovePosition(transform.position + direction * movementSpeed * Time.deltaTime);
+        direction = direction.normalized * movementSpeed;
+        myRigidBody.MovePosition(transform.position + direction * Time.deltaTime);
         direction = Vector3.zero;
     }
 
