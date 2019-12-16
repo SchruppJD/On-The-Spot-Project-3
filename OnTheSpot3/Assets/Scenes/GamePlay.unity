@@ -1944,6 +1944,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a704583c5656f64388e4c68dcf6a96b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxRooms: 10
   players:
   - {fileID: 5149095616338342323, guid: e9eb1ca7f2420fd48b0aeaec9a22c139, type: 3}
   - {fileID: 5149095616338342323, guid: e9eb1ca7f2420fd48b0aeaec9a22c139, type: 3}

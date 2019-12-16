@@ -6,6 +6,9 @@ using UnityEngine.SceneManagement;
 
 public class roomManager : MonoBehaviour
 {
+    public int maxRooms = 10;
+    private int currentRoom;
+
     public GameObject[] players;
     public GameObject camera;
 
@@ -31,6 +34,7 @@ public class roomManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        currentRoom = 1;
         players = GameObject.FindGameObjectsWithTag("Player");
         playerPoints = new int[players.Length];
         for (int i = 0; i < players.Length; i++)
@@ -75,6 +79,7 @@ public class roomManager : MonoBehaviour
 
 
     void newRoom(){
+        currentRoom++;
         int newRoomIndex;
         do
         {
@@ -96,7 +101,14 @@ public class roomManager : MonoBehaviour
     void newConnector(){
         Destroy(activeConnector, 1f);
         activeConnector = nextConnector;
-        nextConnector = Instantiate(connectorRoom, new Vector3( (activeRoom.transform.position.x) + (activeRoomWidth/2) + (connectorRoomWidth/2)      ,0,0), Quaternion.identity);
+        if(currentRoom >= maxRooms)
+        {
+            nextConnector = Instantiate(endRoom, new Vector3((activeRoom.transform.position.x) + (activeRoomWidth / 2) + (connectorRoomWidth / 2), 0, 0), Quaternion.identity);
+        }
+        else
+        {
+            nextConnector = Instantiate(connectorRoom, new Vector3((activeRoom.transform.position.x) + (activeRoomWidth / 2) + (connectorRoomWidth / 2), 0, 0), Quaternion.identity);
+        }
     }
 
     void respawnPlayers(){
