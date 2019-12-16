@@ -50,9 +50,10 @@ public class InterfaceManager : MonoBehaviour
     public void DisplayMenu()
     {
         currentTitle.GetComponent<Text>().text = "What controls will Player " + (playersAssigned + 1).ToString() + " use?";
-        if (playersAssigned == numberOfPlayers)
+        if (playersAssigned >= numberOfPlayers)
         {
             currentC.gameObject.SetActive(false);
+            GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameStart>().StartGame();
         }
         controllerText.GetComponent<Text>().text = "If Player " + (playersAssigned + 1).ToString() + " is using a controller press right trigger on the controller he is using";
     }
