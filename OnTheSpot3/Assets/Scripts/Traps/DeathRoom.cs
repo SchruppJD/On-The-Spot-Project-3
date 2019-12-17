@@ -14,7 +14,7 @@ public class DeathRoom : Trap
         base.Start();
         detectionArea = GetComponent<Collider>();
         animator = GetComponent<Animator>();
-        triggerChance = .3f;
+        triggerChance = .6f;
         reactivateTime = 1;
     }
 

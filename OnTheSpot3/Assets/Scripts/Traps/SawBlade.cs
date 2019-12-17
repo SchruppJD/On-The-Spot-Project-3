@@ -18,7 +18,6 @@ public class SawBlade : Trap
 
     protected override bool Activate()
     {
-        GameObject[] players = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>().players;
         for(int i = 0; i < players.Length; i++)
         {
             if (players[i].GetComponent<PlayerMovement>().isDead)

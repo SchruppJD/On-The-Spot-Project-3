@@ -18,8 +18,8 @@ public class Firespitter : Trap
         base.Start();
         detectionArea = GetComponent<Collider>();
         triggerChance = .4f;
-        amountOfShots = Random.Range(2, 5);
-        lengthOfShots = Random.Range(2, 5);
+        amountOfShots = Random.Range(1, 3);
+        lengthOfShots = Random.Range(0.5f, 1.5f);
         reactivateTime = 1;
         TurnOffFire();
     }

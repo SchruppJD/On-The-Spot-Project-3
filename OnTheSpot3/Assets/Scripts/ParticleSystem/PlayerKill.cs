@@ -20,7 +20,7 @@ public class PlayerKill : MonoBehaviour
     }
     private void OnParticleCollision(GameObject other)
     {
-        if(other.tag == "Player" && !other.GetComponent<PlayerMovement>().isDummy)
+        if(other.tag == "Player" && !other.GetComponent<PlayerMovement>().isDummy && !other.GetComponent<PlayerMovement>().isDead && isMoving)
         {
             other.GetComponent<PlayerMovement>().Kill();
         }

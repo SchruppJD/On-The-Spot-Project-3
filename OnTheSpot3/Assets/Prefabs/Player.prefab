@@ -256,10 +256,10 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1839584220332439724}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 0
   serializedVersion: 2
-  m_Size: {x: 2, y: 1.5832686, z: 2.0092516}
+  m_Size: {x: 2.5, y: 1.5832686, z: 2.0092516}
   m_Center: {x: 0, y: -0.035341978, z: 1.40393}
 --- !u!1 &5149095616338342323
 GameObject:
@@ -409,7 +409,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f28414c998979ed428dd22a7a349a50a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 20
+  pushBox: {fileID: 1839584220332439724}
+  canMove: 0
+  movementSpeed: 10
   isDead: 0
   isDummy: 0
   lastPusher: {fileID: 0}

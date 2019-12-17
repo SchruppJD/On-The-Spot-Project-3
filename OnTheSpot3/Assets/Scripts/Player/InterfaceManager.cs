@@ -42,6 +42,7 @@ public class InterfaceManager : MonoBehaviour
         for(int i = 0; i < number; i++)
         {
             playersCreated[i] = Instantiate(characters, new Vector3(0, 2, startingZ), Quaternion.identity);
+            playersCreated[i].transform.localEulerAngles = new Vector3(0, 90, 0);
             startingZ += 2;
         }
         GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>().players = playersCreated;

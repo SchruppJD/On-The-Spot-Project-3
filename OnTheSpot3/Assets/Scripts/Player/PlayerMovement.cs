@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public GameObject pushBox;
+    private Collider pushDetect;
+    public bool canMove = false;
     public float movementSpeed;
     private Vector3 direction;
 
@@ -29,6 +32,8 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         myRigidBody = GetComponent<Rigidbody>();
+
+        pushDetect = pushBox.GetComponent<Collider>();
     }
 
     // Update is called once per frame
@@ -46,7 +51,10 @@ public class PlayerMovement : MonoBehaviour
             Material baseMat = GetComponent<Renderer>().material;
             baseMat.color = new Color(baseMat.color.r, baseMat.color.g, baseMat.color.b, 0.5f);
         }
-        MoveCharacter();
+        if(canMove)
+        {
+            MoveCharacter();
+        }
     }
 
     void MoveCharacter()
@@ -164,28 +172,33 @@ public class PlayerMovement : MonoBehaviour
         List<GameObject> players = new List<GameObject>();
         players.AddRange(GameObject.FindGameObjectsWithTag("Player"));
 
-        RaycastHit pushRayHit;
+        pushDetect.enabled = true;
+        //RaycastHit pushRayHit;
 
-        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward) * 3f, out pushRayHit, 1.5f))
+        Debug.Log("Push");
+
+        for(int i = 0; i < players.Count; i++)
         {
-            foreach (GameObject player in players)
+            if(players[i].GetComponent<Collider>().bounds.Intersects(pushDetect.bounds))
             {
                 // player doesn't check against itself
-                if (player == gameObject)
+                if (players[i] == gameObject)
                 {
                     continue;
                 }
-
                 // hit a living player
-                if (player == pushRayHit.transform.gameObject && !player.GetComponent<PlayerMovement>().isDead)
-                {
-                    player.GetComponent<PlayerMovement>().lastPusher = gameObject;
-                    player.GetComponent<PlayerMovement>().pusherTimer = 1.5f;
-                    player.GetComponent<Rigidbody>().AddForce(transform.forward * 1000);
-                }
+                players[i].GetComponent<PlayerMovement>().lastPusher = gameObject;
+                players[i].GetComponent<PlayerMovement>().pusherTimer = 1.5f;
+                players[i].GetComponent<Rigidbody>().AddForce(transform.forward * 1000);
+                
             }
         }
+        Invoke("StopPush", 0.4f);
+    }
 
+    void StopPush()
+    {
+        pushDetect.enabled = false;
     }
 
     public bool Reactivate()

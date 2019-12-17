@@ -264,7 +264,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &3095610386128024263
 Transform:
   m_ObjectHideFlags: 0
@@ -5017,7 +5017,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &616711693396225311
 Transform:
   m_ObjectHideFlags: 0
@@ -9770,7 +9770,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &6395960268143005285
 Transform:
   m_ObjectHideFlags: 0
@@ -14660,7 +14660,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.8, y: 4, z: 10}
+  m_Size: {x: 2.5, y: 4, z: 10}
   m_Center: {x: 0, y: 2, z: 5}
 --- !u!114 &1809365470
 MonoBehaviour:
@@ -14674,6 +14674,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c46a9e7cd2179ad4189b5b2e09d94ffe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentState: 0
   resetSign: {fileID: 7833780576087935283, guid: 9763b59312440ab458808ab670f3efc3,
     type: 3}
   particles:

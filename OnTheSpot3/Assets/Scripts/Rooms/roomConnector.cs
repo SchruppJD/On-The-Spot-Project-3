@@ -66,6 +66,7 @@ public class roomConnector : MonoBehaviour
                 if (players[i].transform.position.y < 0)
                 {
                     alivePlayers--;
+                    players[i].GetComponent<PlayerMovement>().Kill();
                 } else if(players[i].GetComponent<PlayerMovement>().isDead)
                 {
                     alivePlayers--;
@@ -74,11 +75,9 @@ public class roomConnector : MonoBehaviour
 
             if (alivePlayers == 0)
             {
+                GameObject.Find("Smoke").GetComponent<PlayerKill>().isMoving = false;
                 Invoke("roomFinished",2f);
             }
-
-             
-           
         }
     }
 
@@ -86,40 +85,45 @@ public class roomConnector : MonoBehaviour
     {
         if (active)
         {
-            
-
-            bool alreadyFinished = false;
-            foreach (var player in donePlayers)
+            if (!other.GetComponent<PlayerMovement>().isDead)
             {
-                if (other.gameObject == player)
+                bool alreadyFinished = false;
+                foreach (var player in donePlayers)
                 {
-                    alreadyFinished = true;
+                    if (other.gameObject == player)
+                    {
+                        alreadyFinished = true;
+                    }
                 }
-            }
 
-            if (alreadyFinished == false)
-            {
-                donePlayers.Add(other.gameObject);
-                if(donePlayers.Count == 1)
+                if (alreadyFinished == false)
                 {
-                    GameController.playerFinished(other.gameObject);
-                    leftEdge.GetComponent<Renderer>().material.SetColor("_Color", Color.yellow);
+                    donePlayers.Add(other.gameObject);
+                    if (donePlayers.Count == 1)
+                    {
+                        GameController.playerFinished(other.gameObject);
+                        leftEdge.GetComponent<Renderer>().material.SetColor("_Color", Color.yellow);
+                    }
                 }
-            }
 
-            playersInZone.Add(other.gameObject);
+                playersInZone.Add(other.gameObject);
 
-            if (playersInZone.Count == alivePlayers)
-            {
-                roomFinished();
-            }
+                checkAlivePlayers();
 
-            checkAlivePlayers();
+                if (playersInZone.Count == alivePlayers)
+                {
+                    GameObject.Find("Smoke").GetComponent<PlayerKill>().isMoving = false;
+                    roomFinished();
+                }
+            }    
         }
 
-        if(!active){
+        if (!active)
+        {
             playersInZone.Add(other.gameObject);
         }
+        
+
     }
 
     private void OnTriggerExit(Collider other)
@@ -136,6 +140,7 @@ public class roomConnector : MonoBehaviour
 
     void roomFinished()
     {
+        
         active = false;
         sealLeft();
         openRight();
@@ -148,9 +153,9 @@ public class roomConnector : MonoBehaviour
         GameController.changeRoom();
         playersInZone.Clear();
         //for (int i = 0; i < players.Length; i++)
-		//	{
+        //	{
         //        playersInZone.Add(players[i]);   
-		//	}
+        //	}
     }
 
     void openRight()
@@ -179,6 +184,7 @@ public class roomConnector : MonoBehaviour
 
     public void Reset()
     {
+        GameObject.Find("Smoke").GetComponent<PlayerKill>().isMoving = false;
         roomFinished();
     }
 }

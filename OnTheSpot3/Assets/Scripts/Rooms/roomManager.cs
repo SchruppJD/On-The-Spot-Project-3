@@ -7,12 +7,13 @@ using UnityEngine.UI;
 
 public class roomManager : MonoBehaviour
 {
-    public int maxRooms = 10;
+    public int maxRooms = 2;
     private int currentRoom;
 
     public GameObject[] players;
     public GameObject camera;
 
+    public GameObject victoryRoom;
     public GameObject startRoom;
     float startRoomWidth;
     public GameObject endRoom;
@@ -20,6 +21,8 @@ public class roomManager : MonoBehaviour
     public GameObject connectorRoom;
     float connectorRoomWidth;
     public GameObject[] roomPrefabs;
+
+    
 
     int roomIndex;
     GameObject activeRoom;
@@ -71,17 +74,12 @@ public class roomManager : MonoBehaviour
             print("R key was pressed");
             nextConnector.GetComponent<roomConnector>().Reset();
         }
-
-        if (Input.GetKeyDown(KeyCode.T))
-        {
-            print("T key was pressed");
-            SceneManager.LoadScene(0);
-        }
     }
 
 
-    void newRoom()
+    bool newRoom()
     {
+        GameObject.Find("Smoke").GetComponent<PlayerKill>().isMoving = false;
         currentRoom++;
         int newRoomIndex;
         do
@@ -98,25 +96,28 @@ public class roomManager : MonoBehaviour
         Destroy(activeRoom, 0.1f);
 
         activeRoom = nextRoom;
-        newConnector();
-        GameObject.Find("Smoke").transform.position = new Vector3(activeRoom.transform.position.x - nextRoomWidth, GameObject.Find("Smoke").transform.position.y, GameObject.Find("Smoke").transform.position.z);
-        GameObject.Find("Smoke").GetComponent<PlayerKill>().ChangeSize(activeRoomWidth);
 
-
+        return newConnector();
     }
 
-    void newConnector()
+    bool newConnector()
     {
         Destroy(activeConnector, 1f);
         activeConnector = nextConnector;
-        if (currentRoom >= maxRooms)
+        if (currentRoom == maxRooms)
         {
             nextConnector = Instantiate(endRoom, new Vector3((activeRoom.transform.position.x) + (activeRoomWidth / 2) + (connectorRoomWidth / 2), 0, 0), Quaternion.identity);
+        }
+        else if(currentRoom == maxRooms + 1)
+        {
+            Win();
+            return true;
         }
         else
         {
             nextConnector = Instantiate(connectorRoom, new Vector3((activeRoom.transform.position.x) + (activeRoomWidth / 2) + (connectorRoomWidth / 2), 0, 0), Quaternion.identity);
         }
+        return false;
     }
 
     void respawnPlayers()
@@ -137,6 +138,8 @@ public class roomManager : MonoBehaviour
             baseMat.color = new Color(baseMat.color.r, baseMat.color.g, baseMat.color.b, 1.0f);
             players[i].layer = 10;
             //}
+
+            
         }
         GameObject[] allPlayers = GameObject.FindGameObjectsWithTag("Player");
         for (int i = allPlayers.Length - 1; i >= 0; i--)
@@ -158,7 +161,7 @@ public class roomManager : MonoBehaviour
     {
         for (int i = 0; i < playerPoints.Length; i++)
         {
-            if (player == players[i])
+            if (player == players[i] && !player.GetComponent<PlayerMovement>().isDead)
             {
                 playerPoints[i] += 100;
             }
@@ -167,46 +170,13 @@ public class roomManager : MonoBehaviour
 
     public void changeRoom()
     {
-        Debug.Log("Current Points: ");
-        for (int i = 0; i < players.Length; i++)
-        {
-            Debug.Log("Player" + (i + 1) + ": " + playerPoints[i]);
-
-            // victory condition
-            if (playerPoints[i] > 1000)
-            {
-                GameObject victoryRoom = Instantiate(roomPrefabs[roomPrefabs.Length - 1]);
-                // find player with highest score
-                int highestIndex = 0;
-                for (int j = 0; j < playerPoints.Length; j++)
-                {
-                    if (playerPoints[j] > playerPoints[highestIndex])
-                    {
-                        highestIndex = j;
-                    }
-                }
-                victoryRoom.transform.position = new Vector3(10000, 10000, 0);
-                players[highestIndex].transform.position = new Vector3(9999.291f, 10001.8f, 1);
-                for (int j = 0; j < players.Length; j++)
-                {
-                    if (j != highestIndex)
-                    {
-                        players[j].transform.position = new Vector3(players[highestIndex].transform.position.x - (i * 3), 
-                            players[highestIndex].transform.position.y, players[highestIndex].transform.position.z - 4);
-                    }
-                }
-                GameObject.FindGameObjectWithTag("MainCamera").transform.position = new Vector3(players[highestIndex].transform.position.x, 
-                    players[highestIndex].transform.position.y + 8, players[highestIndex].transform.position.z - 7) ;
-                GameObject.FindGameObjectWithTag("MainCamera").transform.eulerAngles = new Vector3(45,0,0);  
-                GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraMove>().enabled = false;
-
-                FindObjectOfType<ScoringManager>().VictoryText(highestIndex);
-                return;
-            }
-        }
-        newRoom();
         updateCamera();
-        respawnPlayers();
+        if(!newRoom())
+            respawnPlayers();
+
+        Invoke("MoveMist", 0.1f);
+
+        GameObject.Find("Smoke").GetComponent<PlayerKill>().isMoving = true;
     }
 
     void deathCheck()
@@ -219,10 +189,46 @@ public class roomManager : MonoBehaviour
                 deathCount++;
             }
         }
-        Debug.Log(players.Length);
         if (deathCount == players.Length)
         {
+            GameObject.Find("Smoke").GetComponent<PlayerKill>().isMoving = false;
             nextConnector.GetComponent<roomConnector>().Reset();
         }
+    }
+
+    void Win()
+    {
+        GameObject theVictoryRoom = Instantiate(victoryRoom);
+        // find player with highest score
+        int highestIndex = 0;
+        for (int j = 0; j < playerPoints.Length; j++)
+        {
+            if (playerPoints[j] > playerPoints[highestIndex])
+            {
+                highestIndex = j;
+            }
+        }
+        theVictoryRoom.transform.position = new Vector3(10000, 10000, 0);
+        players[highestIndex].transform.position = new Vector3(9999.291f, 10001.8f, 1);
+        for (int j = 0; j < players.Length; j++)
+        {
+            if (j != highestIndex)
+            {
+                players[j].transform.position = new Vector3(players[highestIndex].transform.position.x - (j * 3),
+                    players[highestIndex].transform.position.y, players[highestIndex].transform.position.z - 4);
+            }
+        }
+        GameObject.FindGameObjectWithTag("MainCamera").transform.position = new Vector3(players[highestIndex].transform.position.x,
+            players[highestIndex].transform.position.y + 8, players[highestIndex].transform.position.z - 7);
+        GameObject.FindGameObjectWithTag("MainCamera").transform.eulerAngles = new Vector3(45, 0, 0);
+        GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraMove>().enabled = false;
+
+        FindObjectOfType<ScoringManager>().VictoryText(highestIndex);
+    }
+
+    void MoveMist()
+    {
+        GameObject.Find("Smoke").transform.position = new Vector3(activeRoom.transform.position.x - nextRoomWidth - 0.5f, GameObject.Find("Smoke").transform.position.y, GameObject.Find("Smoke").transform.position.z);
+        GameObject.Find("Smoke").GetComponent<PlayerKill>().ChangeSize(activeRoomWidth);
     }
 }

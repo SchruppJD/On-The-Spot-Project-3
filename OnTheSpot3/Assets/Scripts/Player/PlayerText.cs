@@ -19,11 +19,6 @@ public class PlayerText : MonoBehaviour
     {
         transform.LookAt(new Vector3(gameObject.transform.position.x, 0, Camera.main.transform.position.z));
         transform.localEulerAngles += new Vector3(60, 180, 0);
-
-        if(gameObject.GetComponentInParent<PlayerMovement>().isDead)
-        {
-            Destroy(gameObject);
-        }
     }
 
     void SetNames()

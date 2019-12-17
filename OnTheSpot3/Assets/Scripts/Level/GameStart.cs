@@ -7,11 +7,12 @@ public class GameStart : MonoBehaviour
     private float timer;
     private bool gameStarted = false;
     private Transform camera;
+    GameObject[] players;
 
     private void Start()
     {
         timer = 0;
-        camera = Camera.main.transform;
+        camera = Camera.main.transform;   
     }
 
     private void Update()
@@ -21,6 +22,11 @@ public class GameStart : MonoBehaviour
             //timer is up
             if (timer > 3.6f)
             {
+                players = players = GameObject.Find("RoomManager").GetComponent<roomManager>().players;
+                for (int i = 0; i < players.Length; i++)
+                {
+                    players[i].GetComponent<PlayerMovement>().canMove = true;
+                }
                 camera.GetChild(0).gameObject.SetActive(false);
                 camera.GetChild(1).gameObject.SetActive(false);
                 camera.GetChild(2).gameObject.SetActive(false);

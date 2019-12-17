@@ -742,6 +742,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Smoke
       objectReference: {fileID: 0}
+    - target: {fileID: 5373957747148084470, guid: af9667bb541dbbb489e1c7c6e8489439,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5373957747148084469, guid: af9667bb541dbbb489e1c7c6e8489439,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -29757,11 +29762,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a704583c5656f64388e4c68dcf6a96b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxRooms: 9
+  maxRooms: 15
   players:
   - {fileID: 5149095616338342323, guid: e9eb1ca7f2420fd48b0aeaec9a22c139, type: 3}
   - {fileID: 5149095616338342323, guid: e9eb1ca7f2420fd48b0aeaec9a22c139, type: 3}
   camera: {fileID: 717694519}
+  victoryRoom: {fileID: 5979233945234443615, guid: 13f5366e18110494294db87d81cf5e1f,
+    type: 3}
   startRoom: {fileID: 8940722015615739561, guid: 90620a530917bab49b297b7e34009d71,
     type: 3}
   endRoom: {fileID: 8048516629961732702, guid: 643f311743468ae449edf6aa5b2ae0f9, type: 3}
@@ -29775,7 +29782,11 @@ MonoBehaviour:
   - {fileID: 7972916712734528726, guid: 636e31da8ebe7c74b8646a407be5d615, type: 3}
   - {fileID: 3441354169605594077, guid: 9bc993c85cdab084095efef5c285178d, type: 3}
   - {fileID: 5885621464309321054, guid: da5bdd911e454914395ea4197479c9b4, type: 3}
-  - {fileID: 5979233945234443615, guid: 13f5366e18110494294db87d81cf5e1f, type: 3}
+  - {fileID: 2351728673032049167, guid: 355022e236ffb7e4ca85c3d05b11c25c, type: 3}
+  - {fileID: 3947603340115670969, guid: 7ff9088a4bfba9d41a89d1d389507a58, type: 3}
+  - {fileID: 4945603275033971140, guid: 0ee85a7a8ed1b0045901c6d672d7bc39, type: 3}
+  - {fileID: 7024033766330402580, guid: 4a5b1b1b3805cb84b8a8603ff6b3a860, type: 3}
+  - {fileID: 8623968666114992918, guid: 20e5df8182c5e894ca0e9f315c352892, type: 3}
   playerPoints: 
 --- !u!4 &1798577992
 Transform:
