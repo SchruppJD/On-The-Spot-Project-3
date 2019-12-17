@@ -27,6 +27,7 @@ public class GameStart : MonoBehaviour
                 GameObject.Find("Smoke").GetComponent<PlayerKill>().isMoving = true;
                 //GameObject.Find("RoomManager").GetComponent<roomManager>().changeRoom();
                 Destroy(GetComponent<GameStart>());
+                FindObjectOfType<ScoringManager>().CreateScoreDisplay();
             }
             //timer has one second left
             else if (timer > 2.2f)

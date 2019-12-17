@@ -55,7 +55,7 @@ public class InterfaceManager : MonoBehaviour
             currentC.gameObject.SetActive(false);
             GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameStart>().StartGame();
         }
-        controllerText.GetComponent<Text>().text = "If Player " + (playersAssigned + 1).ToString() + " is using a controller press right trigger on the controller he is using";
+        controllerText.GetComponent<Text>().text = "If Player " + (playersAssigned + 1).ToString() + " is using a controller press right trigger on the controller he/she is using";
     }
     public void KeyboardSetup()
     {

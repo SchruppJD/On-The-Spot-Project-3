@@ -130,6 +130,15 @@ public class PlayerMovement : MonoBehaviour
             // give pusher credit
             if (lastPusher != null)
             {
+                // find the correct player and give them point
+                for (int i = 0; i < FindObjectOfType<roomManager>().players.Length; i++)
+                {
+                    if (lastPusher == FindObjectOfType<roomManager>().players[i])
+                    {
+                        FindObjectOfType<roomManager>().playerPoints[i] += 200;
+                    }
+                }
+
                 // respawn pusher
                 if (lastPusher.GetComponent<PlayerMovement>().isDead)
                 {
