@@ -51,6 +51,10 @@ public class PlayerMovement : MonoBehaviour
             Material baseMat = GetComponent<Renderer>().material;
             baseMat.color = new Color(baseMat.color.r, baseMat.color.g, baseMat.color.b, 0.5f);
         }
+    }
+
+    void FixedUpdate()
+    {
         if(canMove)
         {
             MoveCharacter();
@@ -60,7 +64,7 @@ public class PlayerMovement : MonoBehaviour
     void MoveCharacter()
     {
         direction = direction.normalized * movementSpeed;
-        myRigidBody.MovePosition(transform.position + direction * Time.deltaTime);
+        myRigidBody.MovePosition(transform.position + (direction * Time.deltaTime));
         direction = Vector3.zero;
     }
 

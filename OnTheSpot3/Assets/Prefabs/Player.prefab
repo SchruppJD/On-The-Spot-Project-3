@@ -411,7 +411,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pushBox: {fileID: 1839584220332439724}
   canMove: 0
-  movementSpeed: 10
+  movementSpeed: 5
   isDead: 0
   isDummy: 0
   lastPusher: {fileID: 0}
